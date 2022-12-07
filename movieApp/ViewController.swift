@@ -17,6 +17,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.dataSource = self
         tableView.delegate = self
         
+        let nib = UINib(nibName: "MovieListTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "myCell")
+        
         DispatchQueue.global().async { [weak self] in
             self?.getResult()
         }
@@ -34,17 +37,29 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")
-        cell?.textLabel?.text = movies[indexPath.row].title
-       // cell?.detailTextLabel?.text = movies[indexPath.row].overview
-        return cell!
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as? MovieListTableViewCell else {return UITableViewCell()}
+        cell.movieName.text = movies[indexPath.row].title
+        DispatchQueue.global().async {
+            let urlString = "https://image.tmdb.org/t/p/w500/\(self.movies[indexPath.row].poster_path)"
+            let url = URL(string: urlString)
+            if let url = url {
+                URLSession.shared.dataTask(with: url) { Dt, _ , er in
+                    if let data = Dt {
+                        DispatchQueue.main.async {
+                            cell.moviePoster.image = UIImage(data: data)
+                        }
+                    }
+                }.resume()
+            }
+        }
+        cell.releaseDate.text = movies[indexPath.row].release_date
+        cell.ratings.text = "\(movies[indexPath.row].vote_average)"
+        return cell
     }
     
     
     func getResult(){
-        let stringCall = "https://api.themoviedb.org/3/movie/now_playing?api_key=541ac744e08188d246878737ef57e7f9&language=en-US&page=2"
-
-    
+        let stringCall = "https://api.themoviedb.org/3/movie/now_playing?api_key=541ac744e08188d246878737ef57e7f9&language=en-US&page=1"
             guard let URL = URL(string: stringCall) else {
                 return
         }

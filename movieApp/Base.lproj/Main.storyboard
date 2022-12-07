@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Movies-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="movieApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="91" width="390" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="8Hc-cG-dSl" style="IBUITableViewCellStyleDefault" id="kiO-MG-jfa">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="8Hc-cG-dSl" style="IBUITableViewCellStyleDefault" id="kiO-MG-jfa">
                                         <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kiO-MG-jfa" id="s0B-4D-G9K">
@@ -49,7 +49,7 @@
                             <constraint firstItem="aqF-4w-en8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="v5a-wr-sac"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9dG-fm-ubI"/>
+                    <navigationItem key="navigationItem" title="Movies" id="9dG-fm-ubI"/>
                     <connections>
                         <outlet property="tableView" destination="aqF-4w-en8" id="JMr-We-dii"/>
                         <segue destination="Y3V-3O-dWf" kind="show" identifier="segue" id="8TH-iL-tbe"/>
@@ -80,28 +80,40 @@
                                     <constraint firstAttribute="width" constant="250" id="LJd-Zs-qm6"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-Es-bEO">
-                                <rect key="frame" x="20" y="430" width="350" height="360"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-Es-bEO">
+                                <rect key="frame" x="20" y="430" width="350" height="245"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dO-GR-8eL">
+                                <rect key="frame" x="10" y="744" width="370" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Buy Tickets"/>
+                                <connections>
+                                    <action selector="buttonTappped:" destination="Y3V-3O-dWf" eventType="touchUpInside" id="cKv-fd-ck7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fYJ-zf-yHl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fYJ-zf-yHl" firstAttribute="trailing" secondItem="TaX-Es-bEO" secondAttribute="trailing" constant="20" id="0eI-wO-qaT"/>
                             <constraint firstItem="nHG-kX-mwJ" firstAttribute="leading" secondItem="fYJ-zf-yHl" secondAttribute="leading" constant="20" id="29L-tS-Ntq"/>
-                            <constraint firstItem="fYJ-zf-yHl" firstAttribute="bottom" secondItem="TaX-Es-bEO" secondAttribute="bottom" constant="20" id="3vx-KK-Qfg"/>
+                            <constraint firstItem="TaX-Es-bEO" firstAttribute="top" secondItem="PJ3-JI-YDl" secondAttribute="bottom" constant="25" id="AXa-Kb-y3s"/>
+                            <constraint firstItem="fYJ-zf-yHl" firstAttribute="bottom" secondItem="6dO-GR-8eL" secondAttribute="bottom" constant="31" id="BRg-4x-dbh"/>
                             <constraint firstItem="PJ3-JI-YDl" firstAttribute="centerX" secondItem="Rj2-nc-8T0" secondAttribute="centerX" id="EnZ-Oe-9cf"/>
                             <constraint firstItem="nHG-kX-mwJ" firstAttribute="top" secondItem="fYJ-zf-yHl" secondAttribute="top" constant="15" id="NMT-Nh-Q11"/>
-                            <constraint firstItem="TaX-Es-bEO" firstAttribute="top" secondItem="PJ3-JI-YDl" secondAttribute="bottom" constant="25" id="SLg-6E-z5o"/>
+                            <constraint firstItem="fYJ-zf-yHl" firstAttribute="trailing" secondItem="6dO-GR-8eL" secondAttribute="trailing" constant="10" id="RtG-e7-94I"/>
                             <constraint firstItem="PJ3-JI-YDl" firstAttribute="top" secondItem="nHG-kX-mwJ" secondAttribute="bottom" constant="25" id="TI8-m7-quG"/>
                             <constraint firstItem="nHG-kX-mwJ" firstAttribute="centerX" secondItem="Rj2-nc-8T0" secondAttribute="centerX" id="TKp-uX-6Qb"/>
                             <constraint firstItem="TaX-Es-bEO" firstAttribute="leading" secondItem="fYJ-zf-yHl" secondAttribute="leading" constant="20" id="XDy-jA-xst"/>
+                            <constraint firstItem="6dO-GR-8eL" firstAttribute="centerX" secondItem="Rj2-nc-8T0" secondAttribute="centerX" id="ZLE-fg-HTf"/>
                             <constraint firstItem="fYJ-zf-yHl" firstAttribute="trailing" secondItem="nHG-kX-mwJ" secondAttribute="trailing" constant="20" id="njW-6b-UUw"/>
+                            <constraint firstItem="6dO-GR-8eL" firstAttribute="top" secondItem="TaX-Es-bEO" secondAttribute="bottom" constant="69" id="obu-Vq-1KA"/>
+                            <constraint firstItem="6dO-GR-8eL" firstAttribute="leading" secondItem="fYJ-zf-yHl" secondAttribute="leading" constant="10" id="zt7-ql-D5g"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dES-w6-eLT"/>
@@ -113,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjE-OA-bbs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1718" y="4"/>
+            <point key="canvasLocation" x="1716.9230769230769" y="3.5545023696682461"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q9t-rh-dBQ">

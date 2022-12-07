@@ -43,6 +43,18 @@ class DetailsViewController: UIViewController {
           
         }
     
+
+    @IBAction func buttonTappped(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Buy Tickets", message: "You are planning to buy tickets for \(filmName.text ?? "some") movie, Are you sure you want to continue?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Continue", style: .default))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(alert,animated: true)
+        
+        
+        
+    }
     
 }
     
