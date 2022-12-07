@@ -10,6 +10,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
    
     @IBOutlet weak var tableView: UITableView!
     var movies:[Results] = []
+    var indexToSend:Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +21,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self?.getResult()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.indexToSend = indexPath.row
+        self.performSegue(withIdentifier: "segue", sender: self)
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
@@ -34,7 +42,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     
     func getResult(){
-        let stringCall = "https://api.themoviedb.org/3/movie/now_playing?api_key=2be38a97dea1ca4aaa4d180f36bf6b8a&language=en-US&page=2"
+        let stringCall = "https://api.themoviedb.org/3/movie/now_playing?api_key=541ac744e08188d246878737ef57e7f9&language=en-US&page=2"
 
     
             guard let URL = URL(string: stringCall) else {
@@ -58,9 +66,21 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
             task.resume()
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue"{
+            if let destinationVC = segue.destination as? DetailsViewController {
+                destinationVC.movieArray = movies
+                destinationVC.movieIndex = indexToSend
+            }
+            
+        }
+        else{
+            print("Unknown identifier")
+        }
+    }
+   
 }
-
 
 struct result:Codable{
     var dates:Dates
