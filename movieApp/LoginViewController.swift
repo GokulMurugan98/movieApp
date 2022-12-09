@@ -39,6 +39,8 @@ class LoginViewController: UIViewController {
     @IBAction func buttonTap(_ sender: Any) {
         
         if(email.text?.lowercased() == verifiedEmail.lowercased() && passwod.text! == verifiedPassword){
+            email.text = nil
+            passwod.text = nil
             print("Verification Successfull")
             performSegue(withIdentifier: "login", sender: self)
             
